@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, withBase } from '../consts';
+
+const articles = await getCollection('articles');
+
+// Sort reverse-chronologically
+const sorted = articles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Extract all unique tags
+const allTags = [...new Set(sorted.flatMap(a => a.data.tags))].sort((a, b) => b.localeCompare(a));
+
+// Reduce raw Markdown to plain text for full-text search matching.
+function stripMarkdown(md: string): string {
+  return (md || '')
+    .replace(/```[\s\S]*?```/g, ' ')          // fenced code blocks
+    .replace(/`([^`]+)`/g, '$1')              // inline code
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')    // images
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')  // links → link text
+    .replace(/^#{1,6}\s+/gm, '')              // headings
+    .replace(/^\s{0,3}>\s?/gm, '')            // blockquotes
+    .replace(/[*_~#]/g, ' ')                  // emphasis / heading marks
+    .replace(/\s+/g, ' ')                     // collapse whitespace
+    .trim();
+}
+
+// Build a full-text search index emitted inline in the page (see #search-index).
+// body = the article's markdown body reduced to plain text, so search reaches
+// evidence that never appears in title/excerpt/tags.
+const searchIndex = sorted.map(a => ({
+  id: a.id,
+  title: a.data.title,
+  excerpt: a.data.excerpt ?? '',
+  tags: a.data.tags,
+  authors: a.data.authors,
+  body: stripMarkdown(a.body ?? ''),
+}));
+
+// Compute stats
+const articleCount = sorted.length;
+const tagCount = allTags.length;
+const lastUpdated = sorted.length > 0
+  ? sorted[0].data.date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+  : '—';
+
+// Date formatting helpers
+function getDay(date: Date): string {
+  return date.getDate().toString().padStart(2, '0');
+}
+
+function getMonthYear(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+function getISODate(date: Date): string {
+  return date.toISOString().split('T')[0];
+}
+---
+
+<Base title={SITE_TITLE}>
+  <div class="container">
+    <header class="header">
+      <div class="header-brand">
+        <h1 class="header-title">{SITE_TITLE}</h1>
+        <p class="header-subtitle">{SITE_DESCRIPTION}</p>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-number">{articleCount}</span>
+        <span class="stat-label">Articles</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">{tagCount}</span>
+        <span class="stat-label">Tags</span>
+      </div>
+    </div>
+
+    <div class="search-block">
+      <div class="search-field" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <label for="search-input" class="visually-hidden">Search the archive</label>
+        <input id="search-input" type="search" placeholder="Search titles, tags, authors, and full text…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <p class="search-count" id="search-count" aria-live="polite"></p>
+    </div>
+
+    <nav class="filter-bar" aria-label="Filter by tag">
+      <button class="tag-chip active" data-tag="all">All</button>
+      {allTags.map(tag => (
+        <button class="tag-chip" data-tag={tag}>
+          {tag.charAt(0).toUpperCase() + tag.slice(1)}
+        </button>
+      ))}
+    </nav>
+
+    <main class="article-list" id="article-list">
+      {sorted.map(article => (
+        <article class="article-item" data-id={article.id} data-tags={JSON.stringify(article.data.tags)}>
+          <div class="article-date-block">
+            <time class="article-date-day" datetime={getISODate(article.data.date)}>
+              {getDay(article.data.date)}
+            </time>
+            <span class="article-date-month">{getMonthYear(article.data.date)}</span>
+          </div>
+          <div class="article-content">
+            <a href={withBase(article.id)} class="article-title">{article.data.title}</a>
+            {article.data.excerpt && (
+              <p class="article-excerpt">{article.data.excerpt}</p>
+            )}
+            <p class="body-hit" hidden></p>
+            <div class="article-tags">
+              {article.data.tags.map(tag => (
+                <a class={`article-tag ${tag}`} data-tag={tag} href={`${withBase()}?tag=${encodeURIComponent(tag)}`}>
+                  {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </main>
+
+    <div class="no-results" id="no-results" hidden>
+      <h2 id="no-results-title">No articles found</h2>
+      <p id="no-results-text"></p>
+      <button class="reset" id="no-results-reset" type="button">Clear search &amp; filters</button>
+    </div>
+
+    <script type="application/json" id="search-index" set:html={JSON.stringify(searchIndex)} is:inline></script>
+
+    <footer class="footer">
+      <p>{SITE_TITLE} &copy; {new Date().getFullYear()}</p>
+      <p class="footer-updated">Last updated {lastUpdated}</p>
+    </footer>
+  </div>
+</Base>
