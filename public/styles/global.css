@@ -649,6 +649,12 @@ a.header-title {
   padding: 0;
 }
 
+.article-body img {
+  display: block;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
 /* === Article Footer === */
 .article-footer {
   margin-top: 64px;
