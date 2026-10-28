@@ -11,12 +11,7 @@ The Education Ministry orders SK Seri  Pristana in Sungai Buloh to remove the ta
 
 Photographs which have emerged online allegedly showing non-Muslim students of a primary school being made to eat in a shower room during fasting month, have angered netizens.
 
- ![NONE](https://i.malaysiakini.com/660/613a00c198727a0d32aa65a538a24b30.jpg)
- The photographs uploaded supposedly by a parent on popular social networking site
- *
-  Facebook
- *
- yesterday, shows students of SK Seri Pristana in Sungai Buloh sitting around tables set up in the school’s changing or shower room.
+ The photographs uploaded supposedly by a parent on popular social networking site *Facebook* yesterday, shows students of SK Seri Pristana in Sungai Buloh sitting around tables set up in the school’s changing or shower room.
 
  It is alleged that school authorities have made the students eat in the makeshift dining room, located next to the toilets.
 
@@ -24,46 +19,30 @@ Photographs which have emerged online allegedly showing non-Muslim students of a
 
  It was stated that Education officials have met with school authorities and parents at 2.30pm.
 
- In an immediate response on Twitter, Deputy Education Minister P Kamalanathan (
- *
-  below
- *
- ) said the school has been instructed to change the location of the temporary eating room.
+ In an immediate response on Twitter, Deputy Education Minister P Kamalanathan (*below*) said the school has been instructed to change the location of the temporary eating room.
 
- ![NONE](https://i.malaysiakini.com/265/8bcbd6f534a7913292439861ccb6b819.jpg)
  He added that the ministry has requested an investigation into the matter.
 
  "If the canteen is under renovation, a proper place should have been identified; surely not the changing room.
 
  "It is not the right thing to do. The school could have appointed a temporary canteen operator to run the operations during Ramadan," he said.
 
+ Full of bacteria, says parent
  
-  Full of bacteria, says parent
- 
-
  In her Facebook posting at 2.30 this morning, Guneswari Kelly, who claims to have a daughter schooling there, said the children are forced to eat there despite the foul stench.
 
  "The bathroom is full of bacteria and smells..., and the toilet next door has a horrible smell," she said.
 
- ![NONE](https://i.malaysiakini.com/660/29282e11a1edcbd8d9dce4356cfab404.jpg)
  She claims that when parents complain, the children are just directed to another bathroom or a store room.
 
- "As a mother, I am in tears and sadness. How many times do they need to run...? Dear Malay friends, is this fair to you? Does your
- *
-  Allah
- *
- allow this?" she asked.
+ "As a mother, I am in tears and sadness. How many times do they need to run...? Dear Malay friends, is this fair to you? Does your *Allah* allow this?" she asked.
 
  Her post has been shared more than 1,900 times and received more than 160 comments within 12 hours, including from Muslims who condemned the act and urged punishment against the school administrators.
 
  Some say they will lodge police reports while others posted the link to the headmaster's Facebook page, urging action.
 
- One FB user, Mythreyar Mutturamalinggam
+ One FB user, Mythreyar Mutturamalinggam lodged a police report at the Tanjung Malim police station in Perak this afternoon.
  
-  lodged a police report at the Tanjung Malim police station in Perak this afternoon.
- 
-
- ![NONE](https://i.malaysiakini.com/660/1b4bc3a0f053d0af021115dedf275719.jpg)
  Meanwhile, commentor Emy Deen said: "I am a Malay and a Muslim and I certainly do not agree with this kind of treatment against another...
 
  "This is not the teachings of Islam. I hope those involved are punished accordingly. I wonder where they put their brains."
@@ -78,17 +57,3 @@ Photographs which have emerged online allegedly showing non-Muslim students of a
  "(The government) does not recognise that we are multi-religious, it doesn't recognise that we need to co-exist thus it (is not) that Islam is the official religion and that everyone should respect it and it only.
 
  "There should be respect of cultural and religious beliefs of all, for example, if Muslims fast in school, there should be food made available for students who aren't Muslims," she said.
-
- 
-  **
-   Related stories
-  **
- 
-
- [
-  Shower room used as 'canteen' since March
- ](http://www.malaysiakini.com/news/236495)
-
- [
-  Don't pay taxes if ministry fails to act, non-Muslims told
- ](http://www.malaysiakini.com/news/236513)
